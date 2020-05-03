@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 import axios from 'axios';
 
 interface Match {
@@ -28,8 +29,6 @@ class Last extends Component<Match, Props> {
             error: null,
             data: []
         };
-
-        //this.customComponent = this.customComponent.bind(this);
     }
 
     componentDidMount(){
@@ -46,28 +45,41 @@ class Last extends Component<Match, Props> {
             })
         });
     }
-    
-    /*customComponent(type: string) {
-        console.log("entra");
-        
-    }*/
 
     render() {
         const { error, data } = this.state
         if(error) {
-            return <h1>Error</h1>
+            return <Redirect to='/404' />
         }
         if (data.length > 0 ) {
+            const response = data.map((val: any, index: number) =>
+                //[ <h1></h1>, <h1></h1>] // For multiple lines use an array for group tags
+                <tr>
+                    <td key={index}>{val.Country}</td>
+                    <td key={index + "c"}>{val.Confirmed}</td>
+                    <td key={index + "d"}>{val.Deaths}</td>
+                    <td key={index + "r"}>{val.Recovered}</td>
+                </tr>
+            );
             return (
                 <div className="LastCountry">
-                    <h1>{data[0].Country}</h1>
-                    <h1>{data[0].Confirmed}</h1>
-                    <h1>{data[0].Deaths}</h1>
-                    <h1>{data[0].Recovered}</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Country</th>
+                                <th>Confirmeds</th>
+                                <th>Recovered</th>
+                                <th>Deaths</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {response}
+                        </tbody>
+                    </table>
                 </div>
             )
         }else{
-            return <h1>Error</h1>
+            return <h1>No data</h1>
         }
     };
 }

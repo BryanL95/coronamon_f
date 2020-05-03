@@ -4,6 +4,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Main from './main/Main';
 import Last from './main/Last';
+import Error from './main/404';
 
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
@@ -20,6 +21,7 @@ const routing = (
       </ul>
       <Route exact path="/" component={Main}/>
       <Route path="/last-day/:country?" component={Last}/>
+      <Route path="/404" component={Error} />
     </div>
   </Router>
 );
