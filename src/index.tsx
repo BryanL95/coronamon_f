@@ -20,6 +20,7 @@ const routing = (
         </li>
       </ul>
       <Route exact path="/" component={Main}/>
+      <Route exact path="/global/:country?" component={Main}/>
       <Route path="/last-day/:country?" component={Last}/>
       <Route path="/404" component={Error} />
     </div>
