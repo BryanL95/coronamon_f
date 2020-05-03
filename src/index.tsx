@@ -1,13 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import Main from './main/Main';
+import Last from './main/Last';
+
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+
+const routing = (
+  <Router>
+    <div>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/last-day">Last Day</Link>
+        </li>
+      </ul>
+      <Route exact path="/" component={Main}/>
+      <Route path="/last-day/:country?" component={Last}/>
+    </div>
+  </Router>
+);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  routing,
   document.getElementById('root')
 );
 
