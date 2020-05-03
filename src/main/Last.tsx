@@ -62,14 +62,16 @@ class Last extends Component<Match, Props> {
                 </tr>
             );
             return (
-                <div className="LastCountry">
-                    <table>
+                <div className="container">
+                    <div className="row">
+                        <div className="col s10 offset-s1">
+                        <table className="highlight responsive-table">
                         <thead>
                             <tr>
                                 <th>Country</th>
                                 <th>Confirmeds</th>
                                 <th>Recovered</th>
-                                <th>Deaths</th>
+                                <th className="death">Deaths</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,9 +79,11 @@ class Last extends Component<Match, Props> {
                         </tbody>
                     </table>
                 </div>
+                </div>
+                </div>
             )
         }else{
-            return <h1>No data</h1>
+            return ("")
         }
     };
 }
